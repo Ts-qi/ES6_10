@@ -1,5 +1,5 @@
 // console.log('Iterator ')
-
+// 自定义遍历  -----牛逼
 let authors = {
 	allAuthors: {
 		fiction: ['Alp','asc','KLe','AAD'],
@@ -51,7 +51,7 @@ let authors = {
 // 		}
 // 	}
 // }
-// 利用 generatator 实现  代码 更加简洁
+// 利用 generator 实现  代码 更加简洁
 authors[Symbol.iterator] = function *() {
 	let allAuthors = this.allAuthors;
 	let keys = Reflect.ownKeys(allAuthors);
@@ -76,4 +76,11 @@ for (let v of authors) {
 	r.push(v)
 }
 console.log(r) // 合并了 数组
+
+
+
+/**
+ * 问题： 1 可迭代协议 和迭代协议 是什么
+ * 			2 generator  和 iterator 区别是什么？
+ */
 
