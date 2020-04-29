@@ -88,11 +88,15 @@ export default myNew = (fn)=> {
 	}
 }
 // 实现一个深拷贝 
-export default deep =(target)=> {
-let lastTarget = 	Object.prototype.toString.call(target).slice(8,-1)
-	if(lastTarget === 'Array') {
+
+function checkedDateTYpe (target) {
+	return Object.prototype.toString.call(target).slice(8,-1)
+}
+export default deepClone =(target)=> {
+	let lastTarget; // 最终数据； return lasttarget
+	if(checkedDateTYpe(target) === 'Array') {
 		return []
-	}else if (lastTarget === 'Object') {
+	}else if (checkedDateTYpe(target) === 'Object') {
 		return {}
 	}else {
 		target
@@ -100,6 +104,15 @@ let lastTarget = 	Object.prototype.toString.call(target).slice(8,-1)
 	// 递归遍历
 
 	for (let key in target) {
-
+		let typeObj= checkedDateTYpe(target[key])
+		if(typeObj === 'Array' || typeObj === 'Object') {
+			///对象/数组里嵌套了对象/数组
+        //继续遍历获取到value值
+			lastTarget[key] = deepClone(deepClone)
+		}else {
+			lastTarget[key] = target[key]
+		}
 	}
+
+	return lastTarget
 }
