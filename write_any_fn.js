@@ -88,7 +88,10 @@ export default myNew = (fn)=> {
 	}
 }
 // 实现一个深拷贝 
-
+/**
+ * 循环引用
+ * @param {*} target 
+ */
 function checkedDateTYpe (target) {
 	return Object.prototype.toString.call(target).slice(8,-1)
 }
